@@ -3,7 +3,8 @@ import React, { useState } from "react";
 function App() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [mode, setMode] = useState("signup"); // "login" or "signup"
+  //const [mode, setMode] = useState("signup"); // "login" or "signup"
+  const mode = "signup";
   const [msg, setMsg] = useState("");
   const BASE_URL = "http://localhost:5000";
 
