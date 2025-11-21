@@ -5,11 +5,12 @@ function App() {
   const [password, setPassword] = useState("");
   const [mode, setMode] = useState("signup"); // "login" or "signup"
   const [msg, setMsg] = useState("");
+  const BASE_URL = "http://localhost:5000";
 
   const handleSubmit = async () => {
     const endpoint = mode === "login" ? "/login" : "/signup";
 
-    const res = await fetch("http://localhost:5000" + endpoint, {
+    const res = await fetch(BASE_URL + "/api" + endpoint, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
