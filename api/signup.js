@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-//import bcrypt from "bcryptjs";
+const mongoose = require("mongoose");
+//const bcrypt = require("bcryptjs");
 
 const MONGO_URL = process.env.MONGO_URL;
 
@@ -11,7 +11,7 @@ async function connectDB() {
   return conn;
 }
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   await connectDB();
 
   const { username, password } = req.body;
@@ -29,4 +29,4 @@ export default async function handler(req, res) {
   await User.create({ username, password: hash });
 
   return res.json({ success: true, message: "Reset OK" });
-}
+};
