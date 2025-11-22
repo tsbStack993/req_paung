@@ -9,7 +9,7 @@ function App() {
   const handleSubmit = async () => {
     const endpoint = mode === "login" ? "/login" : "/signup";
 
-    const res = await fetch("/api" + endpoint, {
+    const res = await fetch("api" + endpoint, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
