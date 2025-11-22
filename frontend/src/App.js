@@ -5,12 +5,11 @@ function App() {
   const [password, setPassword] = useState("");
   const mode = "signup";
   const [msg, setMsg] = useState("");
-  const BASE_URL = "https://req-paung.vercel.app/";
-
+  // Use relative API paths so requests go to the same origin (Vercel functions)
   const handleSubmit = async () => {
     const endpoint = mode === "login" ? "/login" : "/signup";
 
-    const res = await fetch(BASE_URL + "/api" + endpoint, {
+    const res = await fetch("/api" + endpoint, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
