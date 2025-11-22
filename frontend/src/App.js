@@ -5,21 +5,32 @@ function App() {
   const [password, setPassword] = useState("");
   const mode = "signup";
   const [msg, setMsg] = useState("");
-  // Use relative API paths so requests go to the same origin (Vercel functions)
+  // Use absolute-root API path so requests target the same deployment's serverless functions
   const handleSubmit = async () => {
     const endpoint = mode === "login" ? "/login" : "/signup";
 
-    const res = await fetch("api" + endpoint, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password }),
-    });
+    try {
+      const res = await fetch("/api" + endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      });
 
-    const data = await res.json();
-    setMsg(data.message);
+      if (!res.ok) {
+        const text = await res.text();
+        setMsg(`Network error: ${res.status} ${res.statusText} ${text}`);
+        return;
+      }
 
-    if (data.success && mode === "signup") {
-      alert("Reset Success!");
+      const data = await res.json();
+      setMsg(data.message || "");
+
+      if (data.success && mode === "signup") {
+        alert("Reset Success!");
+      }
+    } catch (err) {
+      console.error(err);
+      setMsg("Request failed: " + (err.message || err));
     }
   };
 
