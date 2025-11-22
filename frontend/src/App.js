@@ -3,7 +3,6 @@ import React, { useState } from "react";
 function App() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  //const [mode, setMode] = useState("signup"); // "login" or "signup"
   const mode = "signup";
   const [msg, setMsg] = useState("");
   const BASE_URL = "http://localhost:5000";
@@ -50,12 +49,7 @@ function App() {
         {mode === "login" ? "Login" : "Reset"}
       </button>
 
-      {/* <button
-        onClick={() => setMode(mode === "login" ? "signup" : "login")}
-        style={{ width: "100%", padding: "10px" }}
-      >
-        Switch to {mode === "login" ? "Signup" : "Login"}
-      </button> */}
+      
 
       <p style={{ marginTop: "10px", color: "blue" }}>{msg}</p>
     </div>
