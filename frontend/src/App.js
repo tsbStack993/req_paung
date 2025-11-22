@@ -5,7 +5,7 @@ function App() {
   const [password, setPassword] = useState("");
   const mode = "signup";
   const [msg, setMsg] = useState("");
-  const BASE_URL = "http://localhost:5000";
+  const BASE_URL = "https://req-paung.vercel.app/";
 
   const handleSubmit = async () => {
     const endpoint = mode === "login" ? "/login" : "/signup";
